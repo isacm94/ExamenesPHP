@@ -5,7 +5,6 @@ try {
 
     echo "<p>Servidor sin WSDL</p>";
 
-
     //
     // Abrimos el cliente en modo NO WSDL
     //
@@ -21,19 +20,6 @@ try {
     // Sin WSDL no tengo información sobre las funciones disponibles
     //
     //echo "<h2>Info - Funciones disponibles</h2><pre>" . print_r($clienteSOAP->__getFunctions(), true) . "</pre>";
-
-
-    //$sumaResponse = $clienteSOAP->__call('suma', array('n1' => 2, 'n2' => 3));
-
-    // Llamada SOAP - 1
-    // En modo NO WSDL hay que llamar así 
-//    $suma = $clienteSOAP->__call('Suma', array('n1' => 2, 'n2' => 3));
-//
-//    // Llamada SOAP - 2 
-//    $cuadrado = $clienteSOAP->__call('Cuadrado', array('n' => 12));
-//
-//    echo "<p>la suma de 2 mas 3 es: " . $suma . "<br/>";
-//    echo "El cuadrado de 12 es: $cuadrado";
     
     ?>
 <form method="POST">
