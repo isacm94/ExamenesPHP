@@ -17,8 +17,7 @@ class Ctrl_index extends CI_Controller {
         $config = $this->getConfigPagTodos($numpaises);
         $paises = $this->Mdl_paises->getPaises($config['per_page'], $desde);
         
-        $continentes = $this->Mdl_paises->getContinentes();
-                   
+        $continentes = $this->Mdl_paises->getContinentes();                   
         
         $this->pagination->initialize($config);        
         
