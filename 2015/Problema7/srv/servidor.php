@@ -32,9 +32,6 @@ $server = new SoapServer(
 /*
  * Registro de funciones que implementa el servidor
  */
-$server->AddFunction("suma");
-
-$server->AddFunction("Cuadrado");
 $server->AddFunction("GeneraUnaApuesta");
 $server->AddFunction("GeneraApuestas");
 
@@ -47,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //
     // Código para depuración -- Información de ayuda	
     //
-		echo "<h1>Servidor SOAP</h1><p>Este servidor SOAP puede manejar las siguientes funciones: </p>";
+    echo "<h1>Servidor SOAP</h1><p>Este servidor SOAP puede manejar las siguientes funciones: </p>";
     $functions = $server->getFunctions();
     echo "\n<ul>\n";
     foreach ($functions as $func) {
@@ -63,42 +60,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  *  Podrían estar en otro fichero
  * ************************************************************************************** */
 
-/**
- * Funcion que realiza una suma de dos números
- * @param int $n1
- * @param int $n2
- * @return number
- */
-function suma($n1, $n2) {
-    return $n1 + $n2;
-}
+function GeneraApuestas($num_apuestas) {
 
-/**
- * Devuelve el cuadrado de un número
- * @param double $n
- * @return number
- */
-function Cuadrado($n) {
-    return $n * $n;
-}
-
-function GeneraApuestas($num_apuestas){
-    
     $apuestas = array();
-    for($i = 0; $i < $num_apuestas; $i++){
+    for ($i = 0; $i < $num_apuestas; $i++) {
         $apuestas[] = GeneraUnaApuesta();
     }
-    
+
     return $apuestas;
 }
 
 function GeneraUnaApuesta() {
     $i = 0;
     $numeros = array();
-    
+
     while ($i < 6) {
         $num = rand(1, 49);
-        if (! in_array($num, $numeros)) {
+        if (!in_array($num, $numeros)) {
             $numeros[] = $num;
             $i++;
         }

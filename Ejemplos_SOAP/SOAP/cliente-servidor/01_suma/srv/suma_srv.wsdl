@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/suma_srv/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="suma_srv" targetNamespace="http://www.example.org/suma_srv/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/suma_srv/">
+      <xsd:element name="Suma">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="n1" type="xsd:double" />
+          	<xsd:element name="n2" type="xsd:double"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SumaResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="resultado" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SumaRequest">
+    <wsdl:part element="tns:Suma" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SumaResponse">
+    <wsdl:part name="parameters" type="xsd:double"/>
+
+  </wsdl:message>
+  <wsdl:portType name="suma_srv">
+    <wsdl:operation name="Suma">
+      <wsdl:input message="tns:SumaRequest"/>
+      <wsdl:output message="tns:SumaResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="suma_srvSOAP" type="tns:suma_srv">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Suma">
+      <soap:operation soapAction="http://localhost/dwes/SOAP/cliente-servidor/01_suma/srv/servidor.php"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="suma_srv">
+    <wsdl:port binding="tns:suma_srvSOAP" name="suma_srvSOAP">
+      <soap:address location="http://localhost/dwes/SOAP/cliente-servidor/01_suma/srv/servidor.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
